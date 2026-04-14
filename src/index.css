@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+:root {
+  --font-display: "Orbitron", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --cyan: #00d4ff;
+  --orange: #ff6b35;
+  --green: #39ff14;
+  --yellow: #daf02e;
+  --grey: rgb(60, 60, 60);
+  --bg: #07101f;
+  --panel: rgba(5, 14, 30, 0.95);
+  --border: rgba(0, 212, 255, 0.15);
+  --border-bright: rgba(0, 212, 255, 0.4);
+
+  /* gradients */
+  --gradient-progress-warning: linear-gradient(to right, rgba(255, 107, 53, 0.4), #ff6b35);
+  --gradient-progress-good: linear-gradient(to right, rgba(57, 255, 20, 0.3), #39ff14);
+  --gradient-progress-cyan: linear-gradient(to right, rgba(0, 212, 255, 0.3), #00d4ff);
+  --gradient-glow-bg: radial-gradient(ellipse at top, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+  --scanlines: repeating-linear-gradient(to bottom, transparent 0px, transparent 3px, rgba(0, 0, 0, 0.07) 3px, rgba(0, 0, 0, 0.07) 4px);
+}
