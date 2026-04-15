@@ -1,74 +1,71 @@
-# React + TypeScript + Vite
+# NASA Dashboard — Chrome Extension
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Chrome extension that displays live NASA / ISS data at a glance: how many humans are currently in orbit, who they are, and real-time ISS system telemetry.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Crew manifest** — live count of humans currently in orbit aboard the ISS, pulled from the Open Notify API
+- **ISS system status** — real-time Urine and Water tank levels streamed live from NASA's Lightstreamer telemetry feed
+- No API key required — all data sources are public
 
-## React Compiler
+## Preview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The popup is a compact 380×500px dark-themed dashboard with:
+- Glowing crew count with a scrollable astronaut list
+- Live progress bars for ISS life support tank levels
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### From source
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/LetUndefined/Nasa-extension.git
+   cd Nasa-extension
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+3. **Build the extension**
+   ```bash
+   npm run build
+   ```
+
+4. **Load into Chrome**
+   - Open `chrome://extensions`
+   - Enable **Developer mode** (top-right toggle)
+   - Click **Load unpacked**
+   - Select the `dist/` folder
+
+5. Click the extension icon in your toolbar — the NASA Dashboard popup will open.
+
+## Development
+
+Start the Vite dev server (for UI iteration in the browser):
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+To test as an actual extension, rebuild with `npm run build` and reload the unpacked extension in `chrome://extensions` after each change.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Tech stack
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-# Nasa-extension
+| Tool | Purpose |
+|---|---|
+| React 19 + TypeScript | UI |
+| Vite | Bundler |
+| Tailwind CSS v4 | Styling |
+| Open Notify API | Astronaut count & names |
+| Lightstreamer (ISSLIVE) | Real-time ISS telemetry |
+
+## Data sources
+
+- **Astronaut data** — `http://api.open-notify.org/astros.json` (public, no key needed)
+- **ISS telemetry** — `https://push.lightstreamer.com` / `ISSLIVE` stream, items `USLAB000058` (Urine Tank) and `USLAB000059` (Water Tank)
+
+## License
+
+MIT
