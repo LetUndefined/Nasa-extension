@@ -1,8 +1,11 @@
 import { useContext } from "react";
 import { AstronautContext } from "../context/AstronautDataContext";
 
+
 const HumanOrbit = () => {
-  const data = useContext(AstronautContext);
+  const context = useContext(AstronautContext);
+  const data = context?.data;
+
   return (
     <>
       <div className="flex items-center gap-2">

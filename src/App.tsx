@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <AstronautsDataProvider>
-        <div className="w-[380px] h-[500px] bg-[var(--bg)] border border-[var(--border-bright)]">
+        <div className="w-[380px] h-[600px] bg-[var(--bg)] border border-[var(--border-bright)]">
           <header>
             <Header />
           </header>
@@ -24,7 +24,7 @@ function App() {
               </div>
             </div>
           </section>
-          <section>
+          <section className="border-b border-[var(--border-bright)] pb-6">
             <div className="mx-4 mt-4 ">
               <h5 className="text-[var(--cyan)]/20 uppercase text-[10px] tracking-[0.2rem]" style={{ fontFamily: "var(--font-display)" }}>
                 ISS system status
@@ -32,6 +32,11 @@ function App() {
               <ProgressBar />
             </div>
           </section>
+          <footer className="flex justify-end items-center mt-1 mr-2">
+            <span className="text-[var(--grey)] " style={{ fontFamily: "var(--font-display)" }}>
+              V1.2
+            </span>
+          </footer>
         </div>
       </AstronautsDataProvider>
     </>

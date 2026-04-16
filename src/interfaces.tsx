@@ -12,5 +12,4 @@ export interface TelemetryData {
   label: string;
   unit: string;
   value: string;
-  timestamp: string;
 }
